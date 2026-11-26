@@ -1,0 +1,36 @@
+{
+  "schemaVersion": 1,
+  "exportedAt": "2026-11-25T00:00:00.000Z",
+  "platforms": [
+    {
+      "id": 1,
+      "name": "示例平台",
+      "default_url": "https://example.com/login",
+      "created_at": "2026-11-25T00:00:00.000Z",
+      "updated_at": "2026-11-25T00:00:00.000Z"
+    }
+  ],
+  "categories": [
+    {
+      "id": 1,
+      "name": "示例分类",
+      "sort_order": 0,
+      "created_at": "2026-11-25T00:00:00.000Z"
+    }
+  ],
+  "accounts": [
+    {
+      "id": 1,
+      "platform_id": 1,
+      "username": null,
+      "login_url": null,
+      "email": "person@example.com",
+      "phone": null,
+      "notes": "仅用于说明备份格式的虚构资料",
+      "category_id": 1,
+      "tags": ["示例"],
+      "created_at": "2026-11-25T00:00:00.000Z",
+      "updated_at": "2026-11-25T00:00:00.000Z"
+    }
+  ]
+}

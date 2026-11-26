@@ -1,0 +1,47 @@
+{
+  "name": "account-space",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "wrangler dev --ip 127.0.0.1",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "db:migrate": "wrangler d1 migrations apply DB --remote",
+    "typecheck": "tsc --noEmit && tsc -p tsconfig.browser.json",
+    "test": "vitest run",
+    "test:e2e": "playwright test",
+    "build": "wrangler deploy --dry-run --outdir .amp/in/build",
+    "check": "npm run typecheck && npm test && npm run build",
+    "deploy": "npm run check && npm run db:migrate && wrangler deploy"
+  },
+  "cloudflare": {
+    "bindings": {
+      "ADMIN_USERNAME": {
+        "description": "唯一管理员用户名，无默认值。"
+      },
+      "ADMIN_PASSWORD": {
+        "description": "请用密码管理器生成至少 24 字符的随机强密码；最低 20 字符，不要重复使用。"
+      },
+      "DB": {
+        "description": "每个实例创建独立 D1 数据库，不要选择另一个实例使用的数据库。"
+      }
+    }
+  },
+  "dependencies": {
+    "hono": "4.13.22",
+    "papaparse": "5.5.3"
+  },
+  "devDependencies": {
+    "@cloudflare/vitest-plugin": "1.9.2",
+    "@cloudflare/workers-types": "5.20261125.1",
+    "@playwright/test": "1.58.2",
+    "@types/node": "22.20.6",
+    "@types/papaparse": "5.3.16",
+    "typescript": "5.9.3",
+    "vitest": "4.1.12",
+    "wrangler": "4.168.0"
+  }
+}

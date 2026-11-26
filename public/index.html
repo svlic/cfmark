@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="referrer" content="no-referrer">
+  <title>帐号空间 · Account Space</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/css/style.css">
+  <script type="module" src="/js/app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳到主要内容</a>
+  <header class="topbar"><div class="topbar-inner">
+    <a class="brand" href="/" aria-label="帐号空间首页"><img src="/favicon.svg" alt="" width="38" height="38"><span>帐号空间<small>ACCOUNT SPACE</small></span></a>
+    <div class="header-actions"><label class="sr-only" for="theme">主题</label><select id="theme" class="compact" aria-label="主题"><option value="system">跟随系统</option><option value="light">浅色模式</option><option value="dark">深色模式</option></select><button id="settings" class="secondary">设置</button><button id="logout" class="quiet">退出</button></div>
+  </div></header>
+  <main id="main" class="container">
+    <section class="page-heading"><div><p class="eyebrow">你的数字生活，井然有序</p><h1>所有帐号，一个空间。</h1><p class="muted">整理平台、关联邮箱，轻松找到你需要的帐号。</p></div><button id="add-account" class="primary"><span aria-hidden="true">＋</span> 新增帐号</button></section>
+    <section class="stats" aria-label="完整数据统计"><div><span>总帐号</span><strong id="stat-accounts">—</strong><small>已收录的帐号记录</small></div><div><span>不同平台</span><strong id="stat-platforms">—</strong><small>帐号关联的平台</small></div><div><span>关联邮箱</span><strong id="stat-emails">—</strong><small>登录邮箱与绑定邮箱去重</small></div></section>
+    <section class="workspace" aria-label="帐号浏览">
+      <div class="viewbar"><div id="views" class="segmented" role="group" aria-label="浏览方式"><button data-view="platform" aria-pressed="true">按平台</button><button data-view="email" aria-pressed="false">按邮箱</button><button data-view="all" aria-pressed="false">全部帐号</button></div><span id="result-count" class="muted" role="status"></span></div>
+      <div class="filters"><label class="search"><span class="sr-only">搜索帐号</span><input id="search" type="search" placeholder="搜索平台、帐号、邮箱、手机号…" autocomplete="off"></label><label><span class="sr-only">分类筛选</span><select id="category-filter"><option value="">全部分类</option></select></label><label><span class="sr-only">标签筛选</span><select id="tag-filter"><option value="">全部标签</option></select></label><button id="clear-filters" class="quiet">清除筛选</button></div>
+      <div id="breadcrumb"></div><div id="content" class="card-grid" aria-busy="true"><div class="empty-state"><span class="loading-dot"></span><h2>正在载入你的空间</h2><p>正在安全读取帐号数据…</p></div></div>
+    </section>
+    <footer class="footer">私有帐号台账 · 不存储第三方密码、Token 或密钥</footer>
+  </main>
+  <div id="toasts" class="toasts" aria-live="polite" aria-atomic="false"></div>
+  <noscript><p class="notice">请启用 JavaScript 以使用帐号空间。</p></noscript>
+</body>
+</html>
