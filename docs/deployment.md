@@ -7,7 +7,7 @@
 1. 所有者将实现推送到 `https://github.com/svlic/cfmark`。公开模板需要公开仓库；不要为部署擅自更改公开性。许可证由所有者决定。使用其他仓库地址时更新 README 按钮。
 2. 点击 Deploy to Cloudflare，使用有创建 Workers/D1 和授权 GitHub 权限的帐号。授权 Cloudflare 克隆源仓库至自己的 GitHub，并为副本选择默认生产分支。
 3. 选择 Free，不开启收费套餐或附加服务。指定独一无二的 Worker 名和 D1 名，例如不同实例分别使用 `my-space-a-db` 与 `my-space-b-db`；不要复用另一个实例的 D1。
-4. 平台读取 `wrangler.jsonc` 和 `.dev.vars.example`。填写 `ADMIN_USERNAME`、`ADMIN_PASSWORD`（Secret）；说明来自 package.json 的 `cloudflare.bindings`。用户名不含首尾空格；密码建议密码管理器生成至少 24 字符高熵随机值（最低 20 字符，最多 1024 UTF-8 字节），长度校验不能证明熵。
+4. 平台读取 `wrangler.jsonc` 和 `.dev.vars.example`。填写 `ADMIN_USERNAME`、`ADMIN_PASSWORD`（Secret）；说明来自 package.json 的 `cloudflare.bindings`。用户名不含首尾空格；密码最低 8 字符，最多 1024 UTF-8 字节，建议使用更长的随机密码且不要复用，长度校验不能证明熵。
 5. 自动创建并绑定 `DB` 后执行 `npm run deploy`：严格类型检查 → 本地集成测试 → dry-run 打包 → `wrangler d1 migrations apply DB --remote` → `wrangler deploy`。命令通过 `&&` 串联，检查或迁移失败不会发布。Wrangler 在非交互 CI 环境接受迁移默认确认；本地 CLI 执行仍可能提示确认。
 6. 浏览器打开 workers.dev，使用刚配置的用户名/密码登录；新实例只包含默认分类，不包含任何示例帐号或抢占初始化页面。
 

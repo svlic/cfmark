@@ -13,7 +13,7 @@ export function configured(env: Env): boolean {
     !!env.ADMIN_USERNAME.trim() &&
     encoder.encode(env.ADMIN_USERNAME).length <= 320 &&
     typeof env.ADMIN_PASSWORD === "string" &&
-    env.ADMIN_PASSWORD.length >= 20 &&
+    env.ADMIN_PASSWORD.length >= 8 &&
     encoder.encode(env.ADMIN_PASSWORD).length <= 1024
   );
 }

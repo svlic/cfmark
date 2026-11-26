@@ -30,7 +30,7 @@
 
 1. 所有者确认仓库地址/公开性，推送代码（若更换地址，更新本页按钮链接）。
 2. 点击官方按钮，在 Cloudflare 授权 GitHub，选择 Free，设置唯一 Worker 名和独立数据库名，创建 D1 `DB`。
-3. 在 Cloudflare 安全输入 `ADMIN_USERNAME`、`ADMIN_PASSWORD`。没有默认帐号密码；建议密码管理器生成至少 24 字符随机密码，最低 20 字符、最高 1024 UTF-8 字节。不把真实凭据发到聊天或提交到仓库。
+3. 在 Cloudflare 安全输入 `ADMIN_USERNAME`、`ADMIN_PASSWORD`。没有默认帐号密码；密码最低 8 字符、最高 1024 UTF-8 字节，建议使用更长的随机密码，不复用其他网站的密码。不把真实凭据发到聊天或提交到仓库。
 4. 接受部署命令 `npm run deploy`；平台自动配置资源后，脚本先检查、迁移，再发布。首次打开 workers.dev，用刚设置的凭据登录。
 5. 在 Workers Builds 禁用非生产分支部署，并按 [云端验收步骤](docs/deployment.md#云端验收) 核查限流、第二实例独立性和 100 条导入。
 

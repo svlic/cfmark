@@ -27,7 +27,7 @@
 
 ## 认证与安全
 
-Secrets 为 `ADMIN_USERNAME` 和 `ADMIN_PASSWORD`，最低 20 字符、最多 1024 UTF-8 字节，建议密码管理器生成至少 24 字符高熵随机值。长度不能证明熵。密码原样比较，不 trim。输入与 Secret 计算固定长度 SHA-256 后调用 Workers timingSafeEqual，仅用于比较，不持久化摘要；这不是数据库用户密码方案。
+Secrets 为 `ADMIN_USERNAME` 和 `ADMIN_PASSWORD`。密码最低 8 字符、最多 1024 UTF-8 字节，建议使用更长的随机密码且不要复用。长度不能证明熵。密码原样比较，不 trim。输入与 Secret 计算固定长度 SHA-256 后调用 Workers timingSafeEqual，仅用于比较，不持久化摘要；这不是数据库用户密码方案。
 
 每次登录生成 32 字节随机 token，D1 保存以当前两项凭据为密钥的 HMAC-SHA-256 查找值，不提供离线密码验证材料。修改任一凭据后，旧 Cookie 无法查到会话；不要回滚至已泄露的旧凭据。默认绝对 24 小时、记住登录 30 天；默认浏览器会话 Cookie 可能在关闭浏览器时清除。成功登录有限清理过期会话，退出删除当前服务端会话。
 

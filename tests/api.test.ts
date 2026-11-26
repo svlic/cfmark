@@ -101,10 +101,10 @@ describe("authentication and security", () => {
     expect(missing.status).toBe(404);
     expect(missing.headers.get("Content-Type")).toContain("application/json");
   });
-  it("fails closed for missing or weak credentials and missing limiter", async () => {
+  it("accepts eight-character passwords and fails closed for invalid configuration", async () => {
     for (const change of [
       { ADMIN_PASSWORD: "" },
-      { ADMIN_PASSWORD: "weak" },
+      { ADMIN_PASSWORD: "1234567" },
       { ADMIN_USERNAME: "" },
       { LOGIN_LIMITER: undefined },
     ]) {
@@ -113,6 +113,16 @@ describe("authentication and security", () => {
         503,
       );
     }
+    bindings.ADMIN_PASSWORD = "test-8pw";
+    const login = await request("/api/auth/login", "POST", {
+      username: bindings.ADMIN_USERNAME,
+      password: bindings.ADMIN_PASSWORD,
+    });
+    expect(login.status).toBe(200);
+    const cookie = login.headers.get("Set-Cookie")!.split(";")[0];
+    expect(
+      (await request("/api/auth/session", "GET", undefined, cookie)).status,
+    ).toBe(200);
   });
   it("uses uniform failures, preserves password whitespace and limits attempts", async () => {
     for (const input of [
